@@ -2,19 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Print styles for PDF export */
-@media print {
-  @page {
-    size: A4;
-    margin: 0.5cm;
-  }
-
+@layer base {
   body {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+    @apply bg-background text-gray-900;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white;
   }
 
+  header,
   .no-print {
     display: none !important;
+  }
+
+  #cv-preview {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Smooth Transitions */
+@layer utilities {
+  .smooth-transition {
+    transition: all 0.2s ease-in-out;
   }
 }

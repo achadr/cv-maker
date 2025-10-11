@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "template": "classic",
+    "theme": "indigo",
+    "font": "Inter",
+    "pageSize": "A4",
+    "margin": "normal"
+  },
+  "personal": {
+    "firstName": "Achraf",
+    "lastName": "Bougattaya",
+    "title": "Front-end Developer",
+    "email": "achraf.bougattaya@gmail.com",
+    "phone": "+33 7 67 53 31 13",
+    "location": "Paris, France",
+    "linkedin": "https://www.linkedin.com/in/achraf-bougattaya-747320177/",
+    "website": ""
+  },
+  "summary": "Frontend developer with a strong sense of design and pragmatic problem-solving.",
+  "experience": [
+    {
+      "id": "uuid",
+      "title": "Frontend Developer",
+      "company": "Geotwin",
+      "startDate": "2021-08",
+      "endDate": "2023-12",
+      "location": "Paris, France",
+      "bullets": [
+        "Developed interactive dashboards using React and DeckGL.",
+        "Integrated Mapbox for geographic visualizations.",
+        "Collaborated in agile team with UX and backend engineers."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Université Paris Cité",
+      "degree": "Master in Computer Science",
+      "startDate": "2018",
+      "endDate": "2021",
+      "location": "Paris, France"
+    }
+  ],
+  "skills": [
+    { "name": "React", "level": "Advanced" },
+    { "name": "TypeScript", "level": "Advanced" },
+    { "name": "Tailwind CSS", "level": "Intermediate" },
+    { "name": "Mapbox GL JS", "level": "Intermediate" }
+  ],
+  "projects": [
+    {
+      "name": "City Analyzer",
+      "description": "Visualization of urban mobility data using DeckGL and React."
+    }
+  ],
+  "languages": [
+    { "lang": "French", "level": "Native" },
+    { "lang": "English", "level": "Fluent" }
+  ]
+}

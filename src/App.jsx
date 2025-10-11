@@ -1,11 +1,81 @@
-import React from 'react'
-import CVMaker from './components/CVMaker'
+import React, { useState } from 'react'
+import { AppShell } from './components/AppShell'
+import { EditorColumn } from './components/EditorColumn'
+import { PreviewColumn } from './components/PreviewColumn'
+import { CVPreview } from './components/CVPreview'
+import { PersonalForm } from './components/PersonalForm'
+import { ExperienceForm } from './components/ExperienceForm'
+import { EducationForm } from './components/EducationForm'
+import { SkillsForm } from './components/SkillsForm'
+import { LanguagesForm } from './components/LanguagesForm'
+import { exportToPDF } from './services/pdfExporter'
+import { Edit, Eye } from 'lucide-react'
 
 function App() {
+  const [mobileView, setMobileView] = useState('edit') // 'edit' or 'preview'
+
+  const handleExportPDF = async () => {
+    const result = await exportToPDF('cv-preview')
+    if (!result.success) {
+      alert('PDF export failed. Please try using Print (Ctrl+P) instead.')
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <CVMaker />
-    </div>
+    <AppShell onExportPDF={handleExportPDF}>
+      {/* Mobile Toggle */}
+      <div className="lg:hidden mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-1 flex gap-1">
+          <button
+            onClick={() => setMobileView('edit')}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+              mobileView === 'edit'
+                ? 'bg-primary text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <Edit size={16} />
+            <span>Edit</span>
+          </button>
+          <button
+            onClick={() => setMobileView('preview')}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+              mobileView === 'preview'
+                ? 'bg-primary text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <Eye size={16} />
+            <span>Preview</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Two Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Editor Column */}
+        <div className={`${mobileView === 'edit' ? 'block' : 'hidden'} lg:block`}>
+          <EditorColumn>
+            <PersonalForm />
+            <div className="border-t border-gray-200 my-6"></div>
+            <ExperienceForm />
+            <div className="border-t border-gray-200 my-6"></div>
+            <EducationForm />
+            <div className="border-t border-gray-200 my-6"></div>
+            <SkillsForm />
+            <div className="border-t border-gray-200 my-6"></div>
+            <LanguagesForm />
+          </EditorColumn>
+        </div>
+
+        {/* Preview Column */}
+        <div className={`${mobileView === 'preview' ? 'block' : 'hidden'} lg:block`}>
+          <PreviewColumn>
+            <CVPreview />
+          </PreviewColumn>
+        </div>
+      </div>
+    </AppShell>
   )
 }
 
