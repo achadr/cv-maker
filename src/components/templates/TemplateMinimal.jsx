@@ -1,56 +1,110 @@
 import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Github, Globe } from 'lucide-react';
 
-export const TemplateMinimal = ({ personal, summary, experience, education, skills, languages }) => {
+export const TemplateMinimal = ({ meta, personal, summary, experience, education, skills, languages }) => {
   return (
-    <div className="w-full lg:w-[816px] bg-white shadow-lg p-8 lg:p-16">
-      {/* Header - Centered */}
-      <div className="text-center mb-12 pb-8 border-b border-gray-200">
-        {/* Photo */}
-        {personal.photo && (
-          <div className="mb-6 flex justify-center">
-            <img
-              src={personal.photo}
-              alt={`${personal.firstName} ${personal.lastName}`}
-              className="w-40 h-40 rounded-full object-cover border-4 border-gray-200 shadow-md"
-            />
+    <div
+      className="w-full lg:w-[816px] bg-white shadow-lg p-8 lg:p-16"
+      style={{ fontFamily: meta.font }}
+    >
+      {/* Header - 3 Column Layout */}
+      <div className="mb-8 pb-6 border-b border-gray-200">
+        <div className="grid grid-cols-3 gap-6 items-start">
+          {/* Left Column - Contact Info */}
+          <div className="space-y-2 text-xs text-gray-600">
+            {personal.email && (
+              <div className="flex items-start gap-1.5">
+                <Mail size={12} className="flex-shrink-0 mt-0.5" />
+                <span className="break-all">{personal.email}</span>
+              </div>
+            )}
+            {personal.phone && (
+              <div className="flex items-start gap-1.5">
+                <Phone size={12} className="flex-shrink-0 mt-0.5" />
+                <span>{personal.phone}</span>
+              </div>
+            )}
+            {personal.location && (
+              <div className="flex items-start gap-1.5">
+                <MapPin size={12} className="flex-shrink-0 mt-0.5" />
+                <span>{personal.location}</span>
+              </div>
+            )}
           </div>
-        )}
 
-        <h1 className="text-5xl font-light text-gray-900 mb-2 tracking-tight">
-          {personal.firstName} {personal.lastName}
-        </h1>
-        {personal.title && (
-          <p className="text-lg text-gray-600 mb-4 font-light">{personal.title}</p>
-        )}
-        <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600">
-          {personal.email && <span>{personal.email}</span>}
-          {personal.phone && <span>•</span>}
-          {personal.phone && <span>{personal.phone}</span>}
-          {personal.location && <span>•</span>}
-          {personal.location && <span>{personal.location}</span>}
-        </div>
-        <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600 mt-2">
-          {personal.linkedin && <span>{personal.linkedin}</span>}
-          {personal.website && personal.linkedin && <span>•</span>}
-          {personal.website && <span>{personal.website}</span>}
+          {/* Center Column - Photo, Name, Title */}
+          <div className="text-center">
+            {personal.photo && (
+              <div className="mb-3 flex justify-center">
+                <img
+                  src={personal.photo}
+                  alt={`${personal.firstName} ${personal.lastName}`}
+                  className="w-24 h-24 rounded-full object-cover border-4 shadow-md"
+                  style={{ borderColor: meta.accentColor }}
+                />
+              </div>
+            )}
+            <h1 className="text-2xl font-light text-gray-900 mb-1 tracking-tight">
+              {personal.firstName} {personal.lastName}
+            </h1>
+            {personal.title && (
+              <p className="text-sm text-gray-600 font-light">{personal.title}</p>
+            )}
+          </div>
+
+          {/* Right Column - Contact Info */}
+          <div className="space-y-2 text-xs text-gray-600 flex flex-col items-end">
+            {personal.linkedin && (
+              <div className="flex items-start gap-1.5">
+                <span className="break-all text-right">{personal.linkedin}</span>
+                <Linkedin size={12} className="flex-shrink-0 mt-0.5" />
+              </div>
+            )}
+            {personal.github && (
+              <div className="flex items-start gap-1.5">
+                <span className="break-all text-right">{personal.github}</span>
+                <Github size={12} className="flex-shrink-0 mt-0.5" />
+              </div>
+            )}
+            {personal.website && (
+              <div className="flex items-start gap-1.5">
+                <span className="break-all text-right">{personal.website}</span>
+                <Globe size={12} className="flex-shrink-0 mt-0.5" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Summary */}
       {summary && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-4">About</h2>
-          <p className="text-base text-gray-700 leading-relaxed">{summary}</p>
+        <div className="mb-8">
+          <h2
+            className="text-xl font-light mb-3"
+            style={{ color: meta.accentColor }}
+          >
+            Summary
+          </h2>
+          <p className="text-sm text-gray-700 leading-relaxed">{summary}</p>
         </div>
       )}
 
       {/* Experience */}
       {experience.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-6">Experience</h2>
-          <div className="space-y-8">
+        <div className="mb-8">
+          <h2
+            className="text-xl font-light mb-4"
+            style={{ color: meta.accentColor }}
+          >
+            Experience
+          </h2>
+          <div className="space-y-5">
             {experience.map((exp) => (
-              <div key={exp.id} className="pl-4 border-l-2 border-gray-300">
+              <div
+                key={exp.id}
+                className="pl-4 border-l-2"
+                style={{ borderColor: meta.accentColor }}
+              >
                 <h3 className="text-lg font-medium text-gray-900">{exp.title}</h3>
                 <p className="text-base text-gray-600 mt-1">
                   {exp.company}
@@ -77,11 +131,20 @@ export const TemplateMinimal = ({ personal, summary, experience, education, skil
 
       {/* Education */}
       {education.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-6">Education</h2>
-          <div className="space-y-6">
+        <div className="mb-8">
+          <h2
+            className="text-xl font-light mb-4"
+            style={{ color: meta.accentColor }}
+          >
+            Education
+          </h2>
+          <div className="space-y-4">
             {education.map((edu) => (
-              <div key={edu.id} className="pl-4 border-l-2 border-gray-300">
+              <div
+                key={edu.id}
+                className="pl-4 border-l-2"
+                style={{ borderColor: meta.accentColor }}
+              >
                 <h3 className="text-lg font-medium text-gray-900">{edu.degree}</h3>
                 <p className="text-base text-gray-600 mt-1">{edu.school}</p>
                 <p className="text-sm text-gray-500 mt-1">
@@ -100,12 +163,18 @@ export const TemplateMinimal = ({ personal, summary, experience, education, skil
           {/* Skills */}
           {skills.length > 0 && (
             <div>
-              <h2 className="text-2xl font-light text-gray-900 mb-4">Skills</h2>
-              <div className="flex flex-wrap gap-2">
+              <h2
+                className="text-xl font-light mb-3"
+                style={{ color: meta.accentColor }}
+              >
+                Skills
+              </h2>
+              <div className="flex flex-wrap" style={{ margin: '-4px' }}>
                 {skills.map((skill) => (
                   <span
                     key={skill.id}
                     className="text-sm text-gray-700 px-3 py-1 border border-gray-300 rounded"
+                    style={{ margin: '4px' }}
                   >
                     {skill.name}
                   </span>
@@ -117,7 +186,12 @@ export const TemplateMinimal = ({ personal, summary, experience, education, skil
           {/* Languages */}
           {languages.length > 0 && (
             <div>
-              <h2 className="text-2xl font-light text-gray-900 mb-4">Languages</h2>
+              <h2
+                className="text-xl font-light mb-3"
+                style={{ color: meta.accentColor }}
+              >
+                Languages
+              </h2>
               <div className="space-y-2">
                 {languages.map((lang) => (
                   <div key={lang.id} className="text-sm text-gray-700">

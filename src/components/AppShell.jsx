@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from './Header';
 import { useAutosave } from '../hooks/useAutosave';
 
-export const AppShell = ({ children, onExportPDF, onTemplateClick, isExportDisabled, exportDisabledMessage }) => {
+export const AppShell = ({ children, onExportPDF, onTemplateClick, onCustomizeClick, onExportJSON, onImportJSON, isExportDisabled, exportDisabledMessage }) => {
   const { saveStatus } = useAutosave();
 
   return (
@@ -11,6 +11,9 @@ export const AppShell = ({ children, onExportPDF, onTemplateClick, isExportDisab
         saveStatus={saveStatus}
         onExportPDF={onExportPDF}
         onTemplateClick={onTemplateClick}
+        onCustomizeClick={onCustomizeClick}
+        onExportJSON={onExportJSON}
+        onImportJSON={onImportJSON}
         isExportDisabled={isExportDisabled}
         exportDisabledMessage={exportDisabledMessage}
       />

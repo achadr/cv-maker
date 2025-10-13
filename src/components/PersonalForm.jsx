@@ -78,6 +78,14 @@ export const PersonalForm = () => {
       />
 
       <Input
+        label="GitHub"
+        type="url"
+        value={personal.github}
+        onChange={(value) => updatePersonal('github', value)}
+        placeholder="https://github.com/johndoe"
+      />
+
+      <Input
         label="Website"
         type="url"
         value={personal.website}

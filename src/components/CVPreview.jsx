@@ -8,6 +8,7 @@ export const CVPreview = () => {
   const { meta, personal, summary, experience, education, skills, languages } = useCVStore();
 
   const templateProps = {
+    meta,
     personal,
     summary,
     experience,

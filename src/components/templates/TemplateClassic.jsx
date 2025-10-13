@@ -1,8 +1,12 @@
 import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Github, Globe } from 'lucide-react';
 
-export const TemplateClassic = ({ personal, summary, experience, education, skills, languages }) => {
+export const TemplateClassic = ({ meta, personal, summary, experience, education, skills, languages }) => {
   return (
-    <div className="w-full lg:w-[816px] bg-white shadow-lg border border-gray-200 p-6 lg:p-12">
+    <div
+      className="w-full lg:w-[816px] bg-white shadow-lg border border-gray-200 p-6 lg:p-12"
+      style={{ fontFamily: meta.font }}
+    >
       {/* Header */}
       <div className="mb-6 flex gap-6">
         {/* Photo */}
@@ -24,12 +28,43 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
           {personal.title && (
             <p className="text-xl text-gray-700 mb-3">{personal.title}</p>
           )}
-          <div className="text-sm text-gray-600 space-y-1">
-            {personal.email && <p>{personal.email}</p>}
-            {personal.phone && <p>{personal.phone}</p>}
-            {personal.location && <p>{personal.location}</p>}
-            {personal.linkedin && <p>{personal.linkedin}</p>}
-            {personal.website && <p>{personal.website}</p>}
+          <div className="text-sm text-gray-600 grid grid-cols-2 gap-x-4 gap-y-1">
+            {personal.email && (
+              <p className="flex items-center gap-2">
+                <Mail size={14} />
+                <span>{personal.email}</span>
+              </p>
+            )}
+            {personal.github && (
+              <p className="flex items-center gap-2">
+                <Github size={14} />
+                <span>{personal.github}</span>
+              </p>
+            )}
+            {personal.location && (
+              <p className="flex items-center gap-2">
+                <MapPin size={14} />
+                <span>{personal.location}</span>
+              </p>
+            )}
+            {personal.linkedin && (
+              <p className="flex items-center gap-2">
+                <Linkedin size={14} />
+                <span>{personal.linkedin}</span>
+              </p>
+            )}
+            {personal.phone && (
+              <p className="flex items-center gap-2">
+                <Phone size={14} />
+                <span>{personal.phone}</span>
+              </p>
+            )}
+            {personal.website && (
+              <p className="flex items-center gap-2">
+                <Globe size={14} />
+                <span>{personal.website}</span>
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -37,8 +72,11 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
       {/* Summary */}
       {summary && (
         <div className="mb-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900 mb-2 border-b border-gray-300 pb-1">
-            Professional Summary
+          <h2
+            className="text-sm font-bold uppercase tracking-wider mb-2 pb-1"
+            style={{ color: meta.accentColor, borderBottom: `1px solid ${meta.accentColor}` }}
+          >
+            Summary
           </h2>
           <p className="text-sm text-gray-700 leading-relaxed">{summary}</p>
         </div>
@@ -47,7 +85,10 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
       {/* Experience */}
       {experience.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900 mb-2 border-b border-gray-300 pb-1">
+          <h2
+            className="text-sm font-bold uppercase tracking-wider mb-2 pb-1"
+            style={{ color: meta.accentColor, borderBottom: `1px solid ${meta.accentColor}` }}
+          >
             Work Experience
           </h2>
           <div className="space-y-4">
@@ -78,7 +119,10 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
       {/* Education */}
       {education.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900 mb-2 border-b border-gray-300 pb-1">
+          <h2
+            className="text-sm font-bold uppercase tracking-wider mb-2 pb-1"
+            style={{ color: meta.accentColor, borderBottom: `1px solid ${meta.accentColor}` }}
+          >
             Education
           </h2>
           <div className="space-y-3">
@@ -102,14 +146,18 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
       {/* Skills */}
       {skills.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900 mb-2 border-b border-gray-300 pb-1">
+          <h2
+            className="text-sm font-bold uppercase tracking-wider mb-2 pb-1"
+            style={{ color: meta.accentColor, borderBottom: `1px solid ${meta.accentColor}` }}
+          >
             Skills
           </h2>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap" style={{ margin: '-4px' }}>
             {skills.map((skill) => (
               <span
                 key={skill.id}
                 className="text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded-full"
+                style={{ margin: '4px' }}
               >
                 {skill.name} {skill.level && `• ${skill.level}`}
               </span>
@@ -121,12 +169,15 @@ export const TemplateClassic = ({ personal, summary, experience, education, skil
       {/* Languages */}
       {languages.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900 mb-2 border-b border-gray-300 pb-1">
+          <h2
+            className="text-sm font-bold uppercase tracking-wider mb-2 pb-1"
+            style={{ color: meta.accentColor, borderBottom: `1px solid ${meta.accentColor}` }}
+          >
             Languages
           </h2>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap" style={{ margin: '-4px' }}>
             {languages.map((lang) => (
-              <span key={lang.id} className="text-sm text-gray-700">
+              <span key={lang.id} className="text-sm text-gray-700" style={{ margin: '4px' }}>
                 {lang.lang} ({lang.level})
               </span>
             ))}

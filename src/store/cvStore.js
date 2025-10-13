@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
   meta: {
     template: 'classic',
-    theme: 'indigo',
+    accentColor: '#0f62fe', // Primary blue color
     font: 'Inter',
     pageSize: 'A4',
     margin: 'normal',
@@ -17,6 +17,7 @@ const initialState = {
     phone: '',
     location: '',
     linkedin: '',
+    github: '',
     website: '',
     photo: '', // Base64 encoded image
   },

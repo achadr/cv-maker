@@ -9,14 +9,17 @@ import { EducationForm } from './components/EducationForm'
 import { SkillsForm } from './components/SkillsForm'
 import { LanguagesForm } from './components/LanguagesForm'
 import { TemplateSelector } from './components/TemplateSelector'
+import { CustomizeModal } from './components/CustomizeModal'
 import { exportToPDF } from './services/pdfExporter'
 import { validateCV, getMissingFieldsMessage } from './utils/validation'
+import { exportToJSON, importFromJSON } from './utils/jsonExport'
 import { useCVStore } from './store/cvStore'
 import { Edit, Eye } from 'lucide-react'
 
 function App() {
   const [mobileView, setMobileView] = useState('edit') // 'edit' or 'preview'
   const [isTemplateSelectorOpen, setIsTemplateSelectorOpen] = useState(false)
+  const [isCustomizeModalOpen, setIsCustomizeModalOpen] = useState(false)
 
   // Get CV data for validation
   const cvData = useCVStore()
@@ -44,10 +47,44 @@ function App() {
     setIsTemplateSelectorOpen(false)
   }
 
+  const handleCustomizeClick = () => {
+    setIsCustomizeModalOpen(true)
+  }
+
+  const handleCloseCustomizeModal = () => {
+    setIsCustomizeModalOpen(false)
+  }
+
+  const handleExportJSON = () => {
+    const result = exportToJSON(cvData, 'my-cv.json')
+    if (result.success) {
+      alert('CV data exported successfully!')
+    } else {
+      alert('Failed to export CV data')
+    }
+  }
+
+  const handleImportJSON = async (file) => {
+    if (!file) return
+
+    const result = await importFromJSON(file)
+
+    if (result.success) {
+      // Load the imported data into the store
+      cvData.loadState(result.data)
+      alert('CV data imported successfully!')
+    } else {
+      alert(`Import failed: ${result.error}`)
+    }
+  }
+
   return (
     <AppShell
       onExportPDF={handleExportPDF}
       onTemplateClick={handleTemplateClick}
+      onCustomizeClick={handleCustomizeClick}
+      onExportJSON={handleExportJSON}
+      onImportJSON={handleImportJSON}
       isExportDisabled={!validation.isValid}
       exportDisabledMessage={validationMessage}
     >
@@ -108,6 +145,12 @@ function App() {
       <TemplateSelector
         isOpen={isTemplateSelectorOpen}
         onClose={handleCloseTemplateSelector}
+      />
+
+      {/* Customize Modal */}
+      <CustomizeModal
+        isOpen={isCustomizeModalOpen}
+        onClose={handleCloseCustomizeModal}
       />
     </AppShell>
   )

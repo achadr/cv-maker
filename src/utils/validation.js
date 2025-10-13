@@ -15,24 +15,51 @@ export const validateCV = (cvData) => {
     missingFields.push('Last Name');
   }
 
-  // Check at least 1 work experience
-  if (!cvData.experience || cvData.experience.length === 0) {
-    missingFields.push('At least 1 Work Experience');
+  // Check at least 1 work experience with ALL fields filled
+  const validExperiences = cvData.experience?.filter(
+    exp =>
+      exp.title?.trim() &&
+      exp.company?.trim() &&
+      exp.location?.trim() &&
+      exp.startDate?.trim() &&
+      exp.endDate?.trim() &&
+      exp.bullets?.some(b => b?.trim()) // At least one bullet point with content
+  ) || [];
+
+  if (validExperiences.length === 0) {
+    missingFields.push('At least 1 Work Experience (all fields: title, company, location, dates, bullets)');
   }
 
-  // Check at least 1 education
-  if (!cvData.education || cvData.education.length === 0) {
-    missingFields.push('At least 1 Education');
+  // Check at least 1 education with ALL fields filled
+  const validEducation = cvData.education?.filter(
+    edu =>
+      edu.degree?.trim() &&
+      edu.school?.trim() &&
+      edu.location?.trim() &&
+      edu.startDate?.trim() &&
+      edu.endDate?.trim()
+  ) || [];
+
+  if (validEducation.length === 0) {
+    missingFields.push('At least 1 Education (all fields: degree, school, location, dates)');
   }
 
-  // Check at least 3 skills
-  if (!cvData.skills || cvData.skills.length < 3) {
-    missingFields.push(`At least 3 Skills (currently ${cvData.skills?.length || 0})`);
+  // Check at least 3 skills with names
+  const validSkills = cvData.skills?.filter(
+    skill => skill.name?.trim()
+  ) || [];
+
+  if (validSkills.length < 3) {
+    missingFields.push(`At least 3 Skills with names (currently ${validSkills.length})`);
   }
 
-  // Check at least 1 language
-  if (!cvData.languages || cvData.languages.length === 0) {
-    missingFields.push('At least 1 Language');
+  // Check at least 1 language with name
+  const validLanguages = cvData.languages?.filter(
+    lang => lang.lang?.trim()
+  ) || [];
+
+  if (validLanguages.length === 0) {
+    missingFields.push('At least 1 Language (with name)');
   }
 
   return {
