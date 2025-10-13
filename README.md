@@ -6,6 +6,7 @@ A modern, client-side CV/Resume builder with live preview, localStorage persiste
 
 - **Two-Column Editor**: Form editor (left) with live preview (right)
 - **Real-time Updates**: See changes instantly in the preview
+- **Multiple Templates**: Choose from 3 professional CV designs (Classic, Modern, Minimal)
 - **Auto-save**: Automatically saves to localStorage
 - **PDF Export**: Export your CV as PDF using html2canvas + jsPDF
 - **Mobile Responsive**: Toggle between Edit and Preview on mobile devices
@@ -65,9 +66,20 @@ The built files will be in the `dist/` directory, ready for deployment to any st
 
 1. **Fill in your details** in the left editor panel
 2. **See live preview** on the right as you type
-3. **Add/Remove/Reorder** sections using the controls
-4. **Export to PDF** using the "Export PDF" button in the header
-5. **Data persists** automatically in your browser's localStorage
+3. **Choose a template** by clicking the "Template" button in the header
+4. **Add/Remove/Reorder** sections using the controls
+5. **Export to PDF** using the "Export PDF" button in the header
+6. **Data persists** automatically in your browser's localStorage
+
+## Templates
+
+The app includes 3 professional CV templates to choose from:
+
+- **Classic** - Traditional single-column layout with clean section dividers
+- **Modern** - Bold two-column design with sidebar and gradient colors
+- **Minimal** - Elegant centered layout with lots of whitespace
+
+Switch between templates anytime by clicking the "Template" button in the header. Your data remains the same across all templates.
 
 ## Project Structure
 
@@ -78,11 +90,16 @@ cv-maker/
 │   │   ├── shared/
 │   │   │   ├── Input.jsx
 │   │   │   └── TextArea.jsx
+│   │   ├── templates/
+│   │   │   ├── TemplateClassic.jsx
+│   │   │   ├── TemplateModern.jsx
+│   │   │   └── TemplateMinimal.jsx
 │   │   ├── AppShell.jsx
 │   │   ├── Header.jsx
 │   │   ├── EditorColumn.jsx
 │   │   ├── PreviewColumn.jsx
 │   │   ├── CVPreview.jsx
+│   │   ├── TemplateSelector.jsx
 │   │   ├── PersonalForm.jsx
 │   │   ├── ExperienceForm.jsx
 │   │   ├── EducationForm.jsx
@@ -201,19 +218,19 @@ The application uses a canonical JSON schema for CV data:
 
 - No server-side persistence (localStorage only)
 - No authentication or user accounts
-- Single template (classic) - more templates can be added
 - PDF export quality depends on browser rendering
 
 ## Future Enhancements
 
-- Multiple CV templates
-- Template customization (colors, fonts)
+- Additional CV templates (Corporate, Creative, Academic)
+- Template customization (color picker, font selector)
 - Import from LinkedIn
 - Export to DOCX format
 - Section reordering (drag & drop)
 - Profile photo upload
 - Projects section
 - Cover letter builder
+- Template-specific options and customizations
 
 ## License
 

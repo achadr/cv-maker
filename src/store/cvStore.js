@@ -18,6 +18,7 @@ const initialState = {
     location: '',
     linkedin: '',
     website: '',
+    photo: '', // Base64 encoded image
   },
   summary: '',
   experience: [],

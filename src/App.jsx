@@ -8,21 +8,49 @@ import { ExperienceForm } from './components/ExperienceForm'
 import { EducationForm } from './components/EducationForm'
 import { SkillsForm } from './components/SkillsForm'
 import { LanguagesForm } from './components/LanguagesForm'
+import { TemplateSelector } from './components/TemplateSelector'
 import { exportToPDF } from './services/pdfExporter'
+import { validateCV, getMissingFieldsMessage } from './utils/validation'
+import { useCVStore } from './store/cvStore'
 import { Edit, Eye } from 'lucide-react'
 
 function App() {
   const [mobileView, setMobileView] = useState('edit') // 'edit' or 'preview'
+  const [isTemplateSelectorOpen, setIsTemplateSelectorOpen] = useState(false)
+
+  // Get CV data for validation
+  const cvData = useCVStore()
+  const validation = validateCV(cvData)
+  const validationMessage = getMissingFieldsMessage(validation.missingFields)
 
   const handleExportPDF = async () => {
+    // Don't export if CV is invalid
+    if (!validation.isValid) {
+      alert(validationMessage)
+      return
+    }
+
     const result = await exportToPDF('cv-preview')
     if (!result.success) {
       alert('PDF export failed. Please try using Print (Ctrl+P) instead.')
     }
   }
 
+  const handleTemplateClick = () => {
+    setIsTemplateSelectorOpen(true)
+  }
+
+  const handleCloseTemplateSelector = () => {
+    setIsTemplateSelectorOpen(false)
+  }
+
   return (
-    <AppShell onExportPDF={handleExportPDF}>
+    <AppShell
+      onExportPDF={handleExportPDF}
+      onTemplateClick={handleTemplateClick}
+      isExportDisabled={!validation.isValid}
+      exportDisabledMessage={validationMessage}
+    >
       {/* Mobile Toggle */}
       <div className="lg:hidden mb-4">
         <div className="bg-white rounded-lg shadow-sm p-1 flex gap-1">
@@ -75,6 +103,12 @@ function App() {
           </PreviewColumn>
         </div>
       </div>
+
+      {/* Template Selector Modal */}
+      <TemplateSelector
+        isOpen={isTemplateSelectorOpen}
+        onClose={handleCloseTemplateSelector}
+      />
     </AppShell>
   )
 }

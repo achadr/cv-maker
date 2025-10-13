@@ -2,6 +2,7 @@ import React from 'react';
 import { useCVStore } from '../store/cvStore';
 import { Input } from './shared/Input';
 import { TextArea } from './shared/TextArea';
+import { PhotoUpload } from './shared/PhotoUpload';
 import { User } from 'lucide-react';
 
 export const PersonalForm = () => {
@@ -30,6 +31,12 @@ export const PersonalForm = () => {
           required
         />
       </div>
+
+      <PhotoUpload
+        label="Profile Photo (Optional)"
+        value={personal.photo}
+        onChange={(value) => updatePersonal('photo', value)}
+      />
 
       <Input
         label="Professional Title"

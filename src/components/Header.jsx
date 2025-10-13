@@ -1,7 +1,7 @@
 import React from 'react';
 import { Save, FileDown, Palette } from 'lucide-react';
 
-export const Header = ({ saveStatus, onExportPDF }) => {
+export const Header = ({ saveStatus, onExportPDF, onTemplateClick, isExportDisabled, exportDisabledMessage }) => {
   const getSaveStatusText = () => {
     switch (saveStatus) {
       case 'saving':
@@ -42,6 +42,7 @@ export const Header = ({ saveStatus, onExportPDF }) => {
 
           <div className="flex items-center gap-3">
             <button
+              onClick={onTemplateClick}
               className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border border-gray-300 hover:bg-gray-50 transition-colors"
               title="Change template"
             >
@@ -51,7 +52,13 @@ export const Header = ({ saveStatus, onExportPDF }) => {
 
             <button
               onClick={onExportPDF}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-primary text-white hover:bg-blue-700 transition-colors"
+              disabled={isExportDisabled}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                isExportDisabled
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-primary text-white hover:bg-blue-700'
+              }`}
+              title={isExportDisabled ? exportDisabledMessage : 'Export your CV as PDF'}
             >
               <FileDown size={16} />
               <span>Export PDF</span>
