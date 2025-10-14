@@ -1,5 +1,5 @@
 import React from 'react';
-import { Document, Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, Image, StyleSheet, Svg, Path } from '@react-pdf/renderer';
 
 export const TemplateModernPDF = ({ meta, personal, summary, experience, education, skills, languages }) => {
   // Create lighter and darker shades of accent color
@@ -28,68 +28,69 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
       width: '35%',
       backgroundColor: meta.accentColor,
       color: '#ffffff',
-      padding: 30,
+      padding: 25,
     },
     mainContent: {
       width: '65%',
-      padding: 30,
+      padding: 25,
     },
     photo: {
-      width: 100,
-      height: 100,
-      borderRadius: 50,
-      marginBottom: 20,
+      width: 85,
+      height: 85,
+      borderRadius: 42.5,
+      marginBottom: 12,
       alignSelf: 'center',
     },
     name: {
-      fontSize: 24,
+      fontSize: 22,
       fontWeight: 'bold',
-      marginBottom: 8,
+      marginBottom: 6,
       color: '#ffffff',
     },
     title: {
-      fontSize: 10,
+      fontSize: 9,
       textTransform: 'uppercase',
       letterSpacing: 1,
       opacity: 0.9,
-      marginBottom: 20,
+      marginBottom: 12,
       color: '#ffffff',
     },
     sectionTitle: {
-      fontSize: 10,
+      fontSize: 11,
       fontWeight: 'bold',
       textTransform: 'uppercase',
       letterSpacing: 1,
-      marginBottom: 10,
-      opacity: 0.9,
+      marginBottom: 8,
+      opacity: 0.95,
       color: '#ffffff',
     },
     contactItem: {
       fontSize: 9,
-      marginBottom: 6,
       color: '#ffffff',
+      lineHeight: 1.3,
     },
     skillName: {
-      fontSize: 9,
-      marginBottom: 3,
+      fontSize: 8,
       color: '#ffffff',
+      lineHeight: 1.5,
+      flexWrap: 'wrap',
     },
     skillBarBg: {
       width: '100%',
-      height: 4,
+      height: 3,
       backgroundColor: darkerColor,
-      borderRadius: 2,
-      marginBottom: 10,
+      borderRadius: 1.5,
+      marginBottom: 6,
     },
     skillBarFill: {
-      height: 4,
+      height: 3,
       backgroundColor: '#ffffff',
-      borderRadius: 2,
+      borderRadius: 1.5,
       opacity: 0.9,
     },
     languageItem: {
-      fontSize: 9,
-      marginBottom: 6,
+      fontSize: 8,
+      marginBottom: 4,
       color: '#ffffff',
     },
     mainSectionTitle: {
@@ -153,12 +154,56 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
       fontWeight: 'bold',
     },
     section: {
-      marginBottom: 20,
+      marginBottom: 16,
     },
     sidebarSection: {
-      marginBottom: 20,
+      marginBottom: 12,
     },
   });
+
+  // Icon components
+  const MailIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M22 6l-10 7L2 6" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const PhoneIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const MapPinIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const LinkedinIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M2 9h4v12H2z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const GithubIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M9 18c-4.51 2-5-2-7-2" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const GlobeIcon = ({ size = 10, color = '#ffffff' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 4 }}>
+      <Path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M2 12h20" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
 
   return (
     <Document>
@@ -171,7 +216,7 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
           )}
 
           {/* Name and Title */}
-          <View style={{ marginBottom: 20 }}>
+          <View style={{ marginBottom: 12 }}>
             <Text style={styles.name}>
               {personal.firstName} {personal.lastName}
             </Text>
@@ -184,22 +229,40 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
           <View style={styles.sidebarSection}>
             <Text style={styles.sectionTitle}>CONTACT</Text>
             {personal.email && (
-              <Text style={styles.contactItem}>{personal.email}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <MailIcon />
+                <Text style={styles.contactItem}>{personal.email}</Text>
+              </View>
             )}
             {personal.phone && (
-              <Text style={styles.contactItem}>{personal.phone}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <PhoneIcon />
+                <Text style={styles.contactItem}>{personal.phone}</Text>
+              </View>
             )}
             {personal.location && (
-              <Text style={styles.contactItem}>{personal.location}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <MapPinIcon />
+                <Text style={styles.contactItem}>{personal.location}</Text>
+              </View>
             )}
             {personal.linkedin && (
-              <Text style={styles.contactItem}>{personal.linkedin}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <LinkedinIcon />
+                <Text style={styles.contactItem}>{personal.linkedin}</Text>
+              </View>
             )}
             {personal.github && (
-              <Text style={styles.contactItem}>{personal.github}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <GithubIcon />
+                <Text style={styles.contactItem}>{personal.github}</Text>
+              </View>
             )}
             {personal.website && (
-              <Text style={styles.contactItem}>{personal.website}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                <GlobeIcon />
+                <Text style={styles.contactItem}>{personal.website}</Text>
+              </View>
             )}
           </View>
 
@@ -208,7 +271,7 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
             <View style={styles.sidebarSection}>
               <Text style={styles.sectionTitle}>SKILLS</Text>
               {skills.map((skill) => (
-                <View key={skill.id} style={{ marginBottom: 10 }}>
+                <View key={skill.id} style={{ marginBottom: 8 }}>
                   <Text style={styles.skillName}>{skill.name}</Text>
                   {skill.level && (
                     <View style={styles.skillBarBg}>

@@ -157,60 +157,50 @@ export const TemplateMinimal = ({ meta, personal, summary, experience, education
         </div>
       )}
 
-      {/* Skills & Languages - Two columns on larger screens */}
-      {(skills.length > 0 || languages.length > 0) && (
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '180px' }}>
-          {/* Skills */}
-          {skills.length > 0 && (
-            <div>
-              <h2
-                className="text-xl font-light mb-3"
-                style={{ color: meta.accentColor }}
-              >
-                Skills
-              </h2>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: skills.length <= 3 ? '1fr' : skills.length <= 6 ? '1fr 1fr' : '1fr 1fr 1fr',
-                  gap: '8px',
-                  columnGap: '16px'
-                }}
-              >
-                {skills.map((skill) => (
-                  <div key={skill.id} className="text-sm text-gray-700">
-                    <span style={{ fontWeight: 600 }}>{skill.name}</span>
-                    {skill.level && ` (${skill.level})`}
-                  </div>
-                ))}
+      {/* Skills */}
+      {skills.length > 0 && (
+        <div className="mb-8">
+          <h2
+            className="text-xl font-light mb-3"
+            style={{ color: meta.accentColor }}
+          >
+            Skills
+          </h2>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: skills.length <= 3 ? '1fr' : skills.length <= 6 ? '1fr 1fr' : '1fr 1fr 1fr',
+              gap: '8px',
+              columnGap: '16px'
+            }}
+          >
+            {skills.map((skill) => (
+              <div key={skill.id} className="text-sm text-gray-700">
+                <span style={{ fontWeight: 600 }}>{skill.name}</span>
+                {skill.level && ` (${skill.level})`}
               </div>
-            </div>
-          )}
+            ))}
+          </div>
+        </div>
+      )}
 
-          {/* Languages */}
-          {languages.length > 0 && (
-            <div
-              style={{
-                borderLeft: '1px solid #d1d5db',
-                paddingLeft: '40px'
-              }}
-            >
-              <h2
-                className="text-xl font-light mb-3"
-                style={{ color: meta.accentColor }}
-              >
-                Languages
-              </h2>
-              <div className="space-y-2">
-                {languages.map((lang) => (
-                  <div key={lang.id} className="text-sm text-gray-700">
-                    <span style={{ fontWeight: 600 }}>{lang.lang}</span>
-                    {lang.level && <span className="text-gray-500"> — {lang.level}</span>}
-                  </div>
-                ))}
+      {/* Languages */}
+      {languages.length > 0 && (
+        <div className="mb-8">
+          <h2
+            className="text-xl font-light mb-3"
+            style={{ color: meta.accentColor }}
+          >
+            Languages
+          </h2>
+          <div className="flex flex-wrap gap-4">
+            {languages.map((lang) => (
+              <div key={lang.id} className="text-sm text-gray-700">
+                <span style={{ fontWeight: 600 }}>{lang.lang}</span>
+                {lang.level && <span className="text-gray-500"> — {lang.level}</span>}
               </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       )}
     </div>

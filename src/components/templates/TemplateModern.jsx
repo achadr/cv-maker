@@ -117,25 +117,14 @@ export const TemplateModern = ({ meta, personal, summary, experience, education,
                     <span className="text-sm font-medium">{skill.name}</span>
                   </div>
                   {skill.level && (
-                    <div
-                      className="w-full rounded-full h-1.5"
-                      style={{ backgroundColor: darkerColor }}
-                    >
-                      <div
-                        className="h-1.5 rounded-full"
-                        style={{
-                          backgroundColor: 'white',
-                          opacity: 0.9,
-                          width:
-                            skill.level === 'Expert'
-                              ? '100%'
-                              : skill.level === 'Advanced'
-                              ? '75%'
-                              : skill.level === 'Intermediate'
-                              ? '50%'
-                              : '25%',
-                        }}
-                      ></div>
+                    <div className="w-full rounded-full h-1.5" style={{ backgroundColor: darkerColor }}>
+                      <div className="h-1.5 rounded-full" style={{
+                        backgroundColor: 'white',
+                        opacity: 0.9,
+                        width: skill.level === 'Expert' ? '100%' :
+                               skill.level === 'Advanced' ? '75%' :
+                               skill.level === 'Intermediate' ? '50%' : '25%'
+                      }}></div>
                     </div>
                   )}
                 </div>

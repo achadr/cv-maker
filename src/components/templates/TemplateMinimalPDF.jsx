@@ -1,17 +1,17 @@
 import React from 'react';
-import { Document, Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, Image, StyleSheet, Svg, Path } from '@react-pdf/renderer';
 
 export const TemplateMinimalPDF = ({ meta, personal, summary, experience, education, skills, languages }) => {
   const styles = StyleSheet.create({
     page: {
       backgroundColor: '#ffffff',
-      padding: 50,
+      padding: 28,
       fontFamily: meta.font === 'Inter, sans-serif' ? 'Helvetica' :
                    meta.font === 'Georgia, serif' ? 'Times-Roman' : 'Helvetica',
     },
     header: {
-      marginBottom: 20,
-      paddingBottom: 20,
+      marginBottom: 10,
+      paddingBottom: 10,
       borderBottomWidth: 1,
       borderBottomColor: '#E5E7EB',
     },
@@ -25,30 +25,29 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
     contactItem: {
       fontSize: 8,
       color: '#6B7280',
-      marginBottom: 6,
     },
     headerCenter: {
       width: '40%',
       alignItems: 'center',
     },
     photo: {
-      width: 80,
-      height: 80,
-      borderRadius: 40,
-      marginBottom: 10,
+      width: 60,
+      height: 60,
+      borderRadius: 30,
+      marginBottom: 6,
       alignSelf: 'center',
-      borderWidth: 3,
+      borderWidth: 2,
       borderColor: meta.accentColor,
     },
     name: {
-      fontSize: 20,
+      fontSize: 16,
       fontWeight: 'normal',
       color: '#111827',
-      marginBottom: 4,
+      marginBottom: 2,
       textAlign: 'center',
     },
     jobTitle: {
-      fontSize: 11,
+      fontSize: 9,
       color: '#6B7280',
       fontWeight: 'normal',
       textAlign: 'center',
@@ -60,83 +59,75 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
     contactItemRight: {
       fontSize: 8,
       color: '#6B7280',
-      marginBottom: 6,
       textAlign: 'right',
     },
     sectionTitle: {
-      fontSize: 16,
+      fontSize: 13,
       fontWeight: 'normal',
       color: meta.accentColor,
-      marginBottom: 12,
+      marginBottom: 7,
     },
     summary: {
-      fontSize: 9,
-      lineHeight: 1.5,
+      fontSize: 8,
+      lineHeight: 1.3,
       color: '#374151',
-      marginBottom: 20,
+      marginBottom: 10,
     },
     section: {
-      marginBottom: 20,
+      marginBottom: 10,
     },
     experienceItem: {
-      marginBottom: 16,
-      paddingLeft: 12,
+      marginBottom: 8,
+      paddingLeft: 8,
       borderLeftWidth: 2,
       borderLeftColor: meta.accentColor,
     },
     experienceTitle: {
-      fontSize: 13,
+      fontSize: 11,
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: 2,
+      marginBottom: 1,
     },
     experienceCompany: {
-      fontSize: 11,
+      fontSize: 9,
       color: '#6B7280',
-      marginTop: 2,
-      marginBottom: 2,
+      marginTop: 1,
+      marginBottom: 1,
     },
     experienceDate: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#9CA3AF',
-      marginTop: 2,
-      marginBottom: 8,
+      marginTop: 1,
+      marginBottom: 4,
     },
     bullet: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
-      marginBottom: 4,
-      lineHeight: 1.5,
+      marginBottom: 2,
+      lineHeight: 1.3,
     },
     educationItem: {
-      marginBottom: 12,
-      paddingLeft: 12,
+      marginBottom: 8,
+      paddingLeft: 8,
       borderLeftWidth: 2,
       borderLeftColor: meta.accentColor,
     },
     educationDegree: {
-      fontSize: 13,
+      fontSize: 11,
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: 2,
+      marginBottom: 1,
     },
     educationSchool: {
-      fontSize: 11,
+      fontSize: 9,
       color: '#6B7280',
-      marginTop: 2,
-      marginBottom: 2,
+      marginTop: 1,
+      marginBottom: 1,
     },
     educationDate: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#9CA3AF',
-      marginTop: 2,
-    },
-    skillsAndLanguages: {
-      flexDirection: 'row',
-      gap: 60,
-    },
-    skillsContainer: {
-      flex: 1,
+      marginTop: 1,
     },
     skillsGrid: {
       flexDirection: 'row',
@@ -144,29 +135,71 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
       gap: 8,
     },
     skillItem: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
       width: skills.length <= 3 ? '100%' : skills.length <= 6 ? '48%' : '31%',
-      marginBottom: 6,
+      marginBottom: 4,
     },
     skillName: {
       fontWeight: 'bold',
     },
-    languagesContainer: {
-      flex: 1,
-      borderLeftWidth: 1,
-      borderLeftColor: '#D1D5DB',
-      paddingLeft: 30,
+    languagesRow: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
     },
     languageItem: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
-      marginBottom: 6,
     },
     languageName: {
       fontWeight: 'bold',
     },
   });
+
+  // Icon components
+  const MailIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M22 6l-10 7L2 6" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const PhoneIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const MapPinIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const LinkedinIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M2 9h4v12H2z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const GithubIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M9 18c-4.51 2-5-2-7-2" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+
+  const GlobeIcon = ({ size = 8, color = '#6B7280' }) => (
+    <Svg width={size} height={size} viewBox="0 0 24 24" style={{ marginRight: 3 }}>
+      <Path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M2 12h20" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
 
   return (
     <Document>
@@ -177,13 +210,22 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
             {/* Left Column - Contact Info */}
             <View style={styles.contactLeft}>
               {personal.email && (
-                <Text style={styles.contactItem}>{personal.email}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+                  <MailIcon />
+                  <Text style={styles.contactItem}>{personal.email}</Text>
+                </View>
               )}
               {personal.phone && (
-                <Text style={styles.contactItem}>{personal.phone}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+                  <PhoneIcon />
+                  <Text style={styles.contactItem}>{personal.phone}</Text>
+                </View>
               )}
               {personal.location && (
-                <Text style={styles.contactItem}>{personal.location}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+                  <MapPinIcon />
+                  <Text style={styles.contactItem}>{personal.location}</Text>
+                </View>
               )}
             </View>
 
@@ -203,13 +245,28 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
             {/* Right Column - Contact Info */}
             <View style={styles.contactRight}>
               {personal.linkedin && (
-                <Text style={styles.contactItemRight}>{personal.linkedin}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginBottom: 4 }}>
+                  <Text style={styles.contactItemRight}>{personal.linkedin}</Text>
+                  <View style={{ marginLeft: 3 }}>
+                    <LinkedinIcon />
+                  </View>
+                </View>
               )}
               {personal.github && (
-                <Text style={styles.contactItemRight}>{personal.github}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginBottom: 4 }}>
+                  <Text style={styles.contactItemRight}>{personal.github}</Text>
+                  <View style={{ marginLeft: 3 }}>
+                    <GithubIcon />
+                  </View>
+                </View>
               )}
               {personal.website && (
-                <Text style={styles.contactItemRight}>{personal.website}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginBottom: 4 }}>
+                  <Text style={styles.contactItemRight}>{personal.website}</Text>
+                  <View style={{ marginLeft: 3 }}>
+                    <GlobeIcon />
+                  </View>
+                </View>
               )}
             </View>
           </View>
@@ -260,36 +317,33 @@ export const TemplateMinimalPDF = ({ meta, personal, summary, experience, educat
           </View>
         )}
 
-        {/* Skills & Languages - Two columns */}
-        {(skills.length > 0 || languages.length > 0) && (
-          <View style={styles.skillsAndLanguages}>
-            {/* Skills */}
-            {skills.length > 0 && (
-              <View style={styles.skillsContainer}>
-                <Text style={styles.sectionTitle}>Skills</Text>
-                <View style={styles.skillsGrid}>
-                  {skills.map((skill) => (
-                    <Text key={skill.id} style={styles.skillItem}>
-                      <Text style={styles.skillName}>{skill.name}</Text>
-                      {skill.level && ` (${skill.level})`}
-                    </Text>
-                  ))}
-                </View>
-              </View>
-            )}
+        {/* Skills */}
+        {skills.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Skills</Text>
+            <View style={styles.skillsGrid}>
+              {skills.map((skill) => (
+                <Text key={skill.id} style={styles.skillItem}>
+                  <Text style={styles.skillName}>{skill.name}</Text>
+                  {skill.level && ` (${skill.level})`}
+                </Text>
+              ))}
+            </View>
+          </View>
+        )}
 
-            {/* Languages */}
-            {languages.length > 0 && (
-              <View style={styles.languagesContainer}>
-                <Text style={styles.sectionTitle}>Languages</Text>
-                {languages.map((lang) => (
-                  <Text key={lang.id} style={styles.languageItem}>
-                    <Text style={styles.languageName}>{lang.lang}</Text>
-                    {lang.level && ` — ${lang.level}`}
-                  </Text>
-                ))}
-              </View>
-            )}
+        {/* Languages */}
+        {languages.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Languages</Text>
+            <View style={styles.languagesRow}>
+              {languages.map((lang) => (
+                <Text key={lang.id} style={styles.languageItem}>
+                  <Text style={styles.languageName}>{lang.lang}</Text>
+                  {lang.level && ` — ${lang.level}`}
+                </Text>
+              ))}
+            </View>
           </View>
         )}
       </Page>

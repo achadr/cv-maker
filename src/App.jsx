@@ -117,9 +117,9 @@ function App() {
       </div>
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Editor Column */}
-        <div className={`${mobileView === 'edit' ? 'block' : 'hidden'} lg:block`}>
+        <div className={`${mobileView === 'edit' ? 'block' : 'hidden'} lg:block lg:col-span-2`}>
           <EditorColumn>
             <PersonalForm />
             <div className="border-t border-gray-200 my-6"></div>
@@ -134,7 +134,7 @@ function App() {
         </div>
 
         {/* Preview Column */}
-        <div className={`${mobileView === 'preview' ? 'block' : 'hidden'} lg:block`}>
+        <div className={`${mobileView === 'preview' ? 'block' : 'hidden'} lg:block lg:col-span-3`}>
           <PreviewColumn>
             <CVPreview />
           </PreviewColumn>
