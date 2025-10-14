@@ -152,15 +152,19 @@ export const TemplateClassic = ({ meta, personal, summary, experience, education
           >
             Skills
           </h2>
-          <div className="flex flex-wrap" style={{ margin: '-4px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: skills.length <= 3 ? '1fr' : skills.length <= 6 ? '1fr 1fr' : '1fr 1fr 1fr',
+              gap: '8px',
+              columnGap: '16px'
+            }}
+          >
             {skills.map((skill) => (
-              <span
-                key={skill.id}
-                className="text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded-full"
-                style={{ margin: '4px' }}
-              >
-                {skill.name} {skill.level && `• ${skill.level}`}
-              </span>
+              <div key={skill.id} className="text-sm text-gray-700">
+                <span style={{ fontWeight: 600 }}>{skill.name}</span>
+                {skill.level && ` (${skill.level})`}
+              </div>
             ))}
           </div>
         </div>
@@ -178,7 +182,7 @@ export const TemplateClassic = ({ meta, personal, summary, experience, education
           <div className="flex flex-wrap" style={{ margin: '-4px' }}>
             {languages.map((lang) => (
               <span key={lang.id} className="text-sm text-gray-700" style={{ margin: '4px' }}>
-                {lang.lang} ({lang.level})
+                <span style={{ fontWeight: 600 }}>{lang.lang}</span> ({lang.level})
               </span>
             ))}
           </div>

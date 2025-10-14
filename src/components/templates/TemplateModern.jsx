@@ -19,13 +19,18 @@ export const TemplateModern = ({ meta, personal, summary, experience, education,
   return (
     <div
       className="w-full lg:w-[816px] bg-white shadow-lg border border-gray-200 flex flex-col lg:flex-row"
-      style={{ fontFamily: meta.font }}
+      style={{
+        fontFamily: meta.font,
+        minHeight: '1056px',
+        height: 'auto'
+      }}
     >
       {/* Sidebar - Contact & Skills */}
       <div
         className="w-full lg:w-[280px] text-white p-6 lg:p-8"
         style={{
-          background: `linear-gradient(to bottom, ${meta.accentColor}, ${darkerColor})`
+          background: `linear-gradient(to bottom, ${meta.accentColor}, ${darkerColor})`,
+          minHeight: '1056px'
         }}
       >
         {/* Photo */}

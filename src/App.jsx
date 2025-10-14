@@ -33,7 +33,7 @@ function App() {
       return
     }
 
-    const result = await exportToPDF('cv-preview')
+    const result = await exportToPDF(cvData)
     if (!result.success) {
       alert('PDF export failed. Please try using Print (Ctrl+P) instead.')
     }

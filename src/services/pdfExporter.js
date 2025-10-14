@@ -1,71 +1,58 @@
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import React from 'react';
+import { pdf } from '@react-pdf/renderer';
+import { TemplateClassicPDF } from '../components/templates/TemplateClassicPDF';
+import { TemplateModernPDF } from '../components/templates/TemplateModernPDF';
+import { TemplateMinimalPDF } from '../components/templates/TemplateMinimalPDF';
 
-export const exportToPDF = async (elementId = 'cv-preview') => {
+export const exportToPDF = async (cvData) => {
   try {
-    const element = document.getElementById(elementId);
-
-    if (!element) {
-      throw new Error('CV preview element not found');
+    // Validate CV data
+    if (!cvData || !cvData.meta) {
+      throw new Error('Invalid CV data');
     }
 
-    // Find the actual CV template element (first child of cv-preview)
-    const cvElement = element.firstChild;
+    // Prepare template props
+    const templateProps = {
+      meta: cvData.meta,
+      personal: cvData.personal,
+      summary: cvData.summary,
+      experience: cvData.experience,
+      education: cvData.education,
+      skills: cvData.skills,
+      languages: cvData.languages,
+    };
 
-    if (!cvElement) {
-      throw new Error('CV template element not found');
+    // Select the appropriate PDF template
+    let TemplateComponent;
+    switch (cvData.meta.template) {
+      case 'modern':
+        TemplateComponent = TemplateModernPDF;
+        break;
+      case 'minimal':
+        TemplateComponent = TemplateMinimalPDF;
+        break;
+      case 'classic':
+      default:
+        TemplateComponent = TemplateClassicPDF;
+        break;
     }
 
-    // Show loading state (optional)
-    const originalStyle = cvElement.style.cssText;
+    // Generate PDF blob
+    const blob = await pdf(React.createElement(TemplateComponent, templateProps)).toBlob();
 
-    // Capture the element as canvas with better settings
-    const canvas = await html2canvas(cvElement, {
-      scale: 2, // Higher quality
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff',
-      windowWidth: 1200, // Ensure consistent rendering width
-    });
+    // Create download link
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `CV_${new Date().toISOString().split('T')[0]}.pdf`;
 
-    // Restore original style
-    cvElement.style.cssText = originalStyle;
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
 
-    // A4 dimensions in mm
-    const pdfWidth = 210;
-    const pdfHeight = 297;
-
-    // Calculate dimensions to fit the content properly
-    const canvasAspectRatio = canvas.height / canvas.width;
-    let imgWidth = pdfWidth;
-    let imgHeight = pdfWidth * canvasAspectRatio;
-
-    // If content is taller than A4, we might need multiple pages
-    // For now, scale to fit on one page if possible
-    if (imgHeight > pdfHeight) {
-      imgHeight = pdfHeight;
-      imgWidth = pdfHeight / canvasAspectRatio;
-    }
-
-    // Create PDF
-    const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4',
-    });
-
-    const imgData = canvas.toDataURL('image/png', 1.0);
-
-    // Center the image on the page
-    const xOffset = (pdfWidth - imgWidth) / 2;
-    const yOffset = 0;
-
-    // Add image to PDF
-    pdf.addImage(imgData, 'PNG', xOffset, yOffset, imgWidth, imgHeight);
-
-    // Download PDF
-    const fileName = `CV_${new Date().toISOString().split('T')[0]}.pdf`;
-    pdf.save(fileName);
+    // Cleanup
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
     return { success: true, message: 'PDF exported successfully' };
   } catch (error) {
