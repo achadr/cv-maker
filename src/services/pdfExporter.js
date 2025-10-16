@@ -3,6 +3,11 @@ import { pdf } from '@react-pdf/renderer';
 import { TemplateClassicPDF } from '../components/templates/TemplateClassicPDF';
 import { TemplateModernPDF } from '../components/templates/TemplateModernPDF';
 import { TemplateMinimalPDF } from '../components/templates/TemplateMinimalPDF';
+import { TemplateExecutivePDF } from '../components/templates/TemplateExecutivePDF';
+import { TemplateCreativePDF } from '../components/templates/TemplateCreativePDF';
+import { TemplateCompactPDF } from '../components/templates/TemplateCompactPDF';
+import { TemplateElegantPDF } from '../components/templates/TemplateElegantPDF';
+import { TemplateSimplePDF } from '../components/templates/TemplateSimplePDF';
 
 export const exportToPDF = async (cvData) => {
   try {
@@ -30,6 +35,21 @@ export const exportToPDF = async (cvData) => {
         break;
       case 'minimal':
         TemplateComponent = TemplateMinimalPDF;
+        break;
+      case 'executive':
+        TemplateComponent = TemplateExecutivePDF;
+        break;
+      case 'creative':
+        TemplateComponent = TemplateCreativePDF;
+        break;
+      case 'compact':
+        TemplateComponent = TemplateCompactPDF;
+        break;
+      case 'elegant':
+        TemplateComponent = TemplateElegantPDF;
+        break;
+      case 'simple':
+        TemplateComponent = TemplateSimplePDF;
         break;
       case 'classic':
       default:
