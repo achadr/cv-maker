@@ -4,18 +4,21 @@ A modern, client-side CV/Resume builder with live preview, localStorage persiste
 
 ## Features
 
-- **Two-Column Editor**: Form editor (left) with live preview (right)
+- **Two-Column Editor**: Form editor (40%) with live preview (60%)
+- **Auto-Scaling Preview**: Preview automatically fits viewport without scrolling
 - **Real-time Updates**: See changes instantly in the preview
 - **Multiple Templates**: Choose from 3 professional CV designs (Classic, Modern, Minimal)
+- **Template Customization**: Choose fonts and accent colors
+- **High-Quality PDF Export**: Professional PDF generation using @react-pdf/renderer with SVG icons
 - **Auto-save**: Automatically saves to localStorage
-- **PDF Export**: Export your CV as PDF using html2canvas + jsPDF
+- **Import/Export JSON**: Backup and restore your CV data
 - **Mobile Responsive**: Toggle between Edit and Preview on mobile devices
 - **Sections**:
-  - Personal Details (name, email, phone, location, links)
+  - Personal Details (name, email, phone, location, LinkedIn, GitHub, website, photo)
   - Professional Summary
   - Work Experience (with bullet points, reorderable)
   - Education (reorderable)
-  - Skills (with proficiency levels)
+  - Skills (with proficiency levels and progress bars)
   - Languages (with proficiency levels)
 
 ## Tech Stack
@@ -24,7 +27,7 @@ A modern, client-side CV/Resume builder with live preview, localStorage persiste
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 - **Zustand** - State management
-- **html2canvas + jsPDF** - PDF export
+- **@react-pdf/renderer** - High-quality PDF generation
 - **Lucide React** - Icons
 - **UUID** - Unique ID generation
 
@@ -89,17 +92,22 @@ cv-maker/
 │   ├── components/
 │   │   ├── shared/
 │   │   │   ├── Input.jsx
-│   │   │   └── TextArea.jsx
+│   │   │   ├── TextArea.jsx
+│   │   │   └── PhotoUpload.jsx
 │   │   ├── templates/
 │   │   │   ├── TemplateClassic.jsx
+│   │   │   ├── TemplateClassicPDF.jsx
 │   │   │   ├── TemplateModern.jsx
-│   │   │   └── TemplateMinimal.jsx
+│   │   │   ├── TemplateModernPDF.jsx
+│   │   │   ├── TemplateMinimal.jsx
+│   │   │   └── TemplateMinimalPDF.jsx
 │   │   ├── AppShell.jsx
 │   │   ├── Header.jsx
 │   │   ├── EditorColumn.jsx
-│   │   ├── PreviewColumn.jsx
+│   │   ├── PreviewColumn.jsx      # Auto-scaling preview
 │   │   ├── CVPreview.jsx
 │   │   ├── TemplateSelector.jsx
+│   │   ├── CustomizeModal.jsx
 │   │   ├── PersonalForm.jsx
 │   │   ├── ExperienceForm.jsx
 │   │   ├── EducationForm.jsx
@@ -109,7 +117,10 @@ cv-maker/
 │   │   └── cvStore.js          # Zustand store
 │   ├── services/
 │   │   ├── persistence.js      # localStorage utilities
-│   │   └── pdfExporter.js      # PDF export functionality
+│   │   └── pdfExporter.js      # @react-pdf/renderer export
+│   ├── utils/
+│   │   ├── validation.js       # CV validation
+│   │   └── jsonExport.js       # JSON import/export
 │   ├── hooks/
 │   │   └── useAutosave.js      # Autosave hook
 │   ├── App.jsx
@@ -191,10 +202,12 @@ The application uses a canonical JSON schema for CV data:
 - Automatic restore on page load
 
 ### PDF Export
-- Client-side PDF generation
+- Professional PDF generation using @react-pdf/renderer
+- Separate PDF-optimized templates for pixel-perfect output
+- SVG icons rendered properly in PDFs
 - A4-sized output
-- High-quality rendering (2x scale)
-- Fallback to browser print if export fails
+- Progress bars and visual elements render correctly
+- Template-specific layouts (Classic, Modern with sidebar, Minimal)
 
 ### Mobile Experience
 - Segmented control to toggle between Edit/Preview
@@ -218,19 +231,19 @@ The application uses a canonical JSON schema for CV data:
 
 - No server-side persistence (localStorage only)
 - No authentication or user accounts
-- PDF export quality depends on browser rendering
+- Large photo files may increase localStorage size
 
 ## Future Enhancements
 
 - Additional CV templates (Corporate, Creative, Academic)
-- Template customization (color picker, font selector)
+- Advanced template customization (more fonts, color themes)
 - Import from LinkedIn
 - Export to DOCX format
 - Section reordering (drag & drop)
-- Profile photo upload
 - Projects section
 - Cover letter builder
-- Template-specific options and customizations
+- AI-powered content suggestions
+- Cloud sync integration
 
 ## License
 

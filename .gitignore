@@ -37,3 +37,10 @@ lerna-debug.log*
 
 # Claude local settings
 .claude/settings.local.json
+.claude/new cv/
+
+# Development documentation files
+CHECKPOINT.md
+SESSION_SUMMARY.md
+TEMPLATE_FEATURE.md
+JSON_IMPORT_EXPORT_FEATURE.md
