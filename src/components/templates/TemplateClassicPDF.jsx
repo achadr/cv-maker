@@ -5,33 +5,37 @@ export const TemplateClassicPDF = ({ meta, personal, summary, experience, educat
   const styles = StyleSheet.create({
     page: {
       backgroundColor: '#ffffff',
-      padding: 30,
+      padding: 35,
+      paddingTop: 30,
+      paddingBottom: 30,
       fontFamily: meta.font === 'Inter, sans-serif' ? 'Helvetica' :
                    meta.font === 'Georgia, serif' ? 'Times-Roman' : 'Helvetica',
     },
     header: {
       flexDirection: 'row',
-      marginBottom: 14,
-      gap: 15,
+      marginBottom: 16,
+      gap: 16,
     },
     photo: {
-      width: 85,
-      height: 85,
+      width: 90,
+      height: 90,
       borderRadius: 6,
+      borderWidth: 2,
+      borderColor: '#E5E7EB',
     },
     headerInfo: {
       flex: 1,
     },
     name: {
-      fontSize: 24,
+      fontSize: 26,
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: 3,
+      marginBottom: 2,
     },
     jobTitle: {
-      fontSize: 14,
+      fontSize: 13,
       color: '#374151',
-      marginBottom: 8,
+      marginBottom: 10,
     },
     contactGrid: {
       flexDirection: 'row',
@@ -39,32 +43,32 @@ export const TemplateClassicPDF = ({ meta, personal, summary, experience, educat
       gap: 6,
     },
     contactItem: {
-      fontSize: 8,
+      fontSize: 7.5,
       color: '#6B7280',
       flex: 1,
     },
     sectionTitle: {
-      fontSize: 10,
+      fontSize: 8,
       fontWeight: 'bold',
       textTransform: 'uppercase',
-      letterSpacing: 1,
+      letterSpacing: 1.2,
       color: meta.accentColor,
       borderBottomWidth: 1,
       borderBottomColor: meta.accentColor,
-      paddingBottom: 3,
-      marginBottom: 8,
+      paddingBottom: 2,
+      marginBottom: 6,
     },
     summary: {
-      fontSize: 9,
-      lineHeight: 1.4,
+      fontSize: 8,
+      lineHeight: 1.6,
       color: '#374151',
-      marginBottom: 14,
+      marginBottom: 16,
     },
     section: {
-      marginBottom: 14,
+      marginBottom: 16,
     },
     experienceItem: {
-      marginBottom: 10,
+      marginBottom: 11,
     },
     experienceHeader: {
       flexDirection: 'row',
@@ -73,27 +77,28 @@ export const TemplateClassicPDF = ({ meta, personal, summary, experience, educat
       marginBottom: 2,
     },
     experienceTitle: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 'bold',
       color: '#111827',
     },
     experienceDate: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#6B7280',
     },
     experienceCompany: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
-      marginBottom: 4,
+      marginBottom: 3,
     },
     bullet: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
       marginBottom: 2,
-      paddingLeft: 10,
+      paddingLeft: 8,
+      lineHeight: 1.4,
     },
     educationItem: {
-      marginBottom: 8,
+      marginBottom: 10,
     },
     educationHeader: {
       flexDirection: 'row',
@@ -102,25 +107,25 @@ export const TemplateClassicPDF = ({ meta, personal, summary, experience, educat
       marginBottom: 2,
     },
     educationDegree: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 'bold',
       color: '#111827',
     },
     educationDate: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#6B7280',
     },
     educationSchool: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
     },
     skillsGrid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      gap: 8,
+      gap: 10,
     },
     skillItem: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
       width: skills.length <= 3 ? '100%' : skills.length <= 6 ? '48%' : '31%',
       marginBottom: 6,
@@ -131,11 +136,12 @@ export const TemplateClassicPDF = ({ meta, personal, summary, experience, educat
     languagesContainer: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      gap: 8,
+      gap: 10,
     },
     languageItem: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
+      marginRight: 4,
     },
     languageName: {
       fontWeight: 'bold',

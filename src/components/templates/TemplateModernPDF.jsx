@@ -25,139 +25,149 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
                    meta.font === 'Georgia, serif' ? 'Times-Roman' : 'Helvetica',
     },
     sidebar: {
-      width: '35%',
+      width: '34.3%',
       backgroundColor: meta.accentColor,
       color: '#ffffff',
-      padding: 25,
+      padding: 22,
+      paddingTop: 25,
+      paddingBottom: 25,
     },
     mainContent: {
-      width: '65%',
-      padding: 25,
+      width: '65.7%',
+      padding: 22,
+      paddingTop: 25,
+      paddingBottom: 25,
     },
     photo: {
-      width: 85,
-      height: 85,
-      borderRadius: 42.5,
-      marginBottom: 12,
+      width: 90,
+      height: 90,
+      borderRadius: 45,
+      marginBottom: 16,
       alignSelf: 'center',
+      borderWidth: 3,
+      borderColor: darkerColor,
     },
     name: {
-      fontSize: 22,
+      fontSize: 20,
       fontWeight: 'bold',
-      marginBottom: 6,
+      marginBottom: 4,
       color: '#ffffff',
+      lineHeight: 1.2,
     },
     title: {
-      fontSize: 9,
+      fontSize: 8,
       textTransform: 'uppercase',
-      letterSpacing: 1,
-      opacity: 0.9,
-      marginBottom: 12,
+      letterSpacing: 1.2,
+      opacity: 0.8,
+      marginBottom: 20,
       color: '#ffffff',
     },
     sectionTitle: {
-      fontSize: 11,
+      fontSize: 8,
       fontWeight: 'bold',
       textTransform: 'uppercase',
-      letterSpacing: 1,
+      letterSpacing: 1.2,
       marginBottom: 8,
-      opacity: 0.95,
+      opacity: 0.8,
       color: '#ffffff',
     },
     contactItem: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#ffffff',
-      lineHeight: 1.3,
+      lineHeight: 1.4,
     },
     skillName: {
       fontSize: 8,
       color: '#ffffff',
-      lineHeight: 1.5,
-      flexWrap: 'wrap',
+      marginBottom: 2,
+      fontWeight: 'bold',
     },
     skillBarBg: {
       width: '100%',
-      height: 3,
+      height: 4,
       backgroundColor: darkerColor,
-      borderRadius: 1.5,
-      marginBottom: 6,
+      borderRadius: 2,
+      marginBottom: 8,
     },
     skillBarFill: {
-      height: 3,
+      height: 4,
       backgroundColor: '#ffffff',
-      borderRadius: 1.5,
+      borderRadius: 2,
       opacity: 0.9,
     },
     languageItem: {
       fontSize: 8,
-      marginBottom: 4,
+      marginBottom: 5,
       color: '#ffffff',
     },
     mainSectionTitle: {
-      fontSize: 14,
+      fontSize: 13,
       fontWeight: 'bold',
       color: meta.accentColor,
       borderBottomWidth: 2,
       borderBottomColor: meta.accentColor,
-      paddingBottom: 6,
-      marginBottom: 12,
+      paddingBottom: 5,
+      marginBottom: 10,
     },
     summary: {
-      fontSize: 9,
-      lineHeight: 1.5,
+      fontSize: 8,
+      lineHeight: 1.6,
       color: '#374151',
-      marginBottom: 20,
-    },
-    experienceItem: {
       marginBottom: 16,
     },
+    experienceItem: {
+      marginBottom: 14,
+    },
     experienceTitle: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 'bold',
       color: '#111827',
       marginBottom: 2,
     },
     experienceDate: {
-      fontSize: 8,
+      fontSize: 7,
       color: '#6B7280',
-      marginBottom: 4,
+      fontWeight: 'bold',
     },
     experienceCompany: {
-      fontSize: 9,
+      fontSize: 8,
       color: meta.accentColor,
       fontWeight: 'bold',
-      marginBottom: 6,
+      marginBottom: 4,
+      marginTop: 2,
     },
     bullet: {
-      fontSize: 9,
+      fontSize: 8,
       color: '#374151',
-      marginBottom: 3,
-      paddingLeft: 10,
+      marginBottom: 2,
+      paddingLeft: 8,
+      lineHeight: 1.4,
     },
     educationItem: {
-      marginBottom: 12,
+      marginBottom: 11,
     },
     educationDegree: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 'bold',
       color: '#111827',
       marginBottom: 2,
     },
     educationDate: {
-      fontSize: 8,
+      fontSize: 7,
       color: '#6B7280',
-      marginBottom: 4,
+      fontWeight: 'bold',
     },
     educationSchool: {
-      fontSize: 9,
+      fontSize: 8,
       color: meta.accentColor,
       fontWeight: 'bold',
+      marginTop: 2,
     },
     section: {
       marginBottom: 16,
     },
     sidebarSection: {
-      marginBottom: 12,
+      marginBottom: 20,
     },
   });
 
@@ -216,10 +226,9 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
           )}
 
           {/* Name and Title */}
-          <View style={{ marginBottom: 12 }}>
-            <Text style={styles.name}>
-              {personal.firstName} {personal.lastName}
-            </Text>
+          <View style={{ marginBottom: 20 }}>
+            <Text style={styles.name}>{personal.firstName}</Text>
+            <Text style={styles.name}>{personal.lastName}</Text>
             {personal.title && (
               <Text style={styles.title}>{personal.title}</Text>
             )}
@@ -229,37 +238,37 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
           <View style={styles.sidebarSection}>
             <Text style={styles.sectionTitle}>CONTACT</Text>
             {personal.email && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
                 <MailIcon />
                 <Text style={styles.contactItem}>{personal.email}</Text>
               </View>
             )}
-            {personal.phone && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                <PhoneIcon />
-                <Text style={styles.contactItem}>{personal.phone}</Text>
+            {personal.github && (
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
+                <GithubIcon />
+                <Text style={styles.contactItem}>{personal.github}</Text>
               </View>
             )}
             {personal.location && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
                 <MapPinIcon />
                 <Text style={styles.contactItem}>{personal.location}</Text>
               </View>
             )}
             {personal.linkedin && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
                 <LinkedinIcon />
                 <Text style={styles.contactItem}>{personal.linkedin}</Text>
               </View>
             )}
-            {personal.github && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                <GithubIcon />
-                <Text style={styles.contactItem}>{personal.github}</Text>
+            {personal.phone && (
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
+                <PhoneIcon />
+                <Text style={styles.contactItem}>{personal.phone}</Text>
               </View>
             )}
             {personal.website && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
                 <GlobeIcon />
                 <Text style={styles.contactItem}>{personal.website}</Text>
               </View>
@@ -271,8 +280,10 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
             <View style={styles.sidebarSection}>
               <Text style={styles.sectionTitle}>SKILLS</Text>
               {skills.map((skill) => (
-                <View key={skill.id} style={{ marginBottom: 8 }}>
-                  <Text style={styles.skillName}>{skill.name}</Text>
+                <View key={skill.id} style={{ marginBottom: 10 }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+                    <Text style={styles.skillName}>{skill.name}</Text>
+                  </View>
                   {skill.level && (
                     <View style={styles.skillBarBg}>
                       <View
@@ -321,10 +332,12 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
               <Text style={styles.mainSectionTitle}>Work Experience</Text>
               {experience.map((exp) => (
                 <View key={exp.id} style={styles.experienceItem}>
-                  <Text style={styles.experienceTitle}>{exp.title}</Text>
-                  <Text style={styles.experienceDate}>
-                    {exp.startDate} - {exp.endDate || 'Present'}
-                  </Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 2 }}>
+                    <Text style={styles.experienceTitle}>{exp.title}</Text>
+                    <Text style={styles.experienceDate}>
+                      {exp.startDate} - {exp.endDate || 'Present'}
+                    </Text>
+                  </View>
                   <Text style={styles.experienceCompany}>
                     {exp.company}{exp.location && ` • ${exp.location}`}
                   </Text>
@@ -342,10 +355,12 @@ export const TemplateModernPDF = ({ meta, personal, summary, experience, educati
               <Text style={styles.mainSectionTitle}>Education</Text>
               {education.map((edu) => (
                 <View key={edu.id} style={styles.educationItem}>
-                  <Text style={styles.educationDegree}>{edu.degree}</Text>
-                  <Text style={styles.educationDate}>
-                    {edu.startDate} - {edu.endDate}
-                  </Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 2 }}>
+                    <Text style={styles.educationDegree}>{edu.degree}</Text>
+                    <Text style={styles.educationDate}>
+                      {edu.startDate} - {edu.endDate}
+                    </Text>
+                  </View>
                   <Text style={styles.educationSchool}>
                     {edu.school}{edu.location && ` • ${edu.location}`}
                   </Text>

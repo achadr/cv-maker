@@ -7,7 +7,7 @@ A modern, client-side CV/Resume builder with live preview, localStorage persiste
 - **Two-Column Editor**: Form editor (40%) with live preview (60%)
 - **Auto-Scaling Preview**: Preview automatically fits viewport without scrolling
 - **Real-time Updates**: See changes instantly in the preview
-- **Multiple Templates**: Choose from 3 professional CV designs (Classic, Modern, Minimal)
+- **Multiple Templates**: Choose from 8 professional CV designs (Classic, Modern, Minimal, Executive, Creative, Compact, Elegant, Simple)
 - **Template Customization**: Choose fonts and accent colors
 - **High-Quality PDF Export**: Professional PDF generation using @react-pdf/renderer with SVG icons
 - **Auto-save**: Automatically saves to localStorage
@@ -76,11 +76,16 @@ The built files will be in the `dist/` directory, ready for deployment to any st
 
 ## Templates
 
-The app includes 3 professional CV templates to choose from:
+The app includes 8 professional CV templates to choose from:
 
 - **Classic** - Traditional single-column layout with clean section dividers
 - **Modern** - Bold two-column design with sidebar and gradient colors
 - **Minimal** - Elegant centered layout with lots of whitespace
+- **Executive** - Premium two-column layout for leadership roles
+- **Creative** - Bold typography and unique layout for creatives
+- **Compact** - Dense layout that fits more content on one page
+- **Elegant** - Sophisticated design with refined typography
+- **Simple** - Ultra-minimalist with no styling distractions
 
 Switch between templates anytime by clicking the "Template" button in the header. Your data remains the same across all templates.
 
